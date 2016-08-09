@@ -80,7 +80,13 @@
         <service
             android:name=".GCMTokenChangedListenerService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <provider
+            android:name=".GeoGroupSQLiteContentProvider"
+            android:authorities="geogroup.sqliteprovider"
+            android:enabled="true"
+            android:exported="false"></provider>
     </application>
 
 </manifest>

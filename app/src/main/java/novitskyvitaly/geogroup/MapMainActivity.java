@@ -171,33 +171,36 @@ public class MapMainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_add_geo_group:
-                JSONObject jsonObjectHeader = new JSONObject();
-                try {
-                    jsonObjectHeader.put("to", "/topics/topic1");
-                    JSONObject jsonObjectData = new JSONObject();
-                    jsonObjectData.put("message", "hello");
-                    jsonObjectHeader.put("data", jsonObjectData);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, getString(R.string.google_gcm_server_url), jsonObjectHeader,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.i(MY_TAG, response.toString());
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                error.printStackTrace();
-                            }
-                        });
-                VolleySingleton.getmInstance(this).addToRequestQueue(request);
+
                 break;
         }
     }
 
+    private void SendPush(String msg){
+        JSONObject jsonObjectHeader = new JSONObject();
+        try {
+            jsonObjectHeader.put("to", "/topics/topic1");
+            JSONObject jsonObjectData = new JSONObject();
+            jsonObjectData.put("message", "hello");
+            jsonObjectHeader.put("data", jsonObjectData);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, getString(R.string.google_gcm_server_url), jsonObjectHeader,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i(MY_TAG, response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        VolleySingleton.getmInstance(this).addToRequestQueue(request);
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -278,7 +281,7 @@ public class MapMainActivity extends AppCompatActivity
 
     @Override
     public void onLocationChanged(Location location) {
-
+        Log.i(MY_TAG, "got location: lat: " + String.valueOf(location.getLatitude()) + ", long: " + String.valueOf(location.getLongitude()));
     }
 
     @Override
