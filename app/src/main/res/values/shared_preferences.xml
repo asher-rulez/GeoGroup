@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="sp_gcm_token">sp_gcm_token</string>
+    <string name="sp_gcm_token_key">sp_gcm_token_key</string>
+
+</resources>

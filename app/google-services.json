@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "216775535128",
+    "project_id": "geogroup-1470424183137"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216775535128:android:b8ace1a306a24bdd",
+        "android_client_info": {
+          "package_name": "novitskyvitaly.geogroup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnRdzIR3v9qqIy8QC-5i2r4bQ8S8p-x5E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

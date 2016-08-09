@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="server_api_key">AIzaSyDJR7IxP0qZLUSHIGvVmojIUv6hyipnzAc</string>
+    <string name="sender_id">216775535128</string>
+    <string name="google_gcm_server_url">https://android.googleapis.com/gcm/send</string>
+
+</resources>
