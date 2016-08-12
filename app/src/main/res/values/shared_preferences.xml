@@ -4,4 +4,9 @@
     <string name="sp_gcm_token">sp_gcm_token</string>
     <string name="sp_gcm_token_key">sp_gcm_token_key</string>
 
+    <!-- Is application running in foreground -->
+
+    <string name="is_app_running_in_foreground_token">is_running_token</string>
+    <string name="is_app_running_in_foreground_key">is_running_key</string>
+
 </resources>

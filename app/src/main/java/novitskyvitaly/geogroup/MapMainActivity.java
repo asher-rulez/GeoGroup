@@ -3,7 +3,11 @@ package novitskyvitaly.geogroup;
 import android.*;
 import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -29,6 +33,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -46,13 +51,19 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import Connectivity.VolleySingleton;
+import Util.CommonUtil;
+import Util.GeoGroupBroadcastReceiver;
+import Util.IBroadcastReceiverCallback;
 
 public class MapMainActivity extends AppCompatActivity
         implements View.OnClickListener,
         OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener,
-        GoogleMap.OnInfoWindowClickListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener {
+        GoogleMap.OnInfoWindowClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener,
+        IBroadcastReceiverCallback {
 
     private static final String MY_TAG = "geog_main_map_act";
 
@@ -70,6 +81,13 @@ public class MapMainActivity extends AppCompatActivity
     private LocationRequest mLocationRequest;
     private int mLocationRequestInterval = 10000;
 
+    GeoGroupBroadcastReceiver broadcastReceiver;
+
+    Firebase firebaseReference;
+
+//    DatabaseReference mRootReference = FirebaseDatabase.getInstance().getReference("https://geogroup-5241a.firebaseio.com");
+//    DatabaseReference groupNamesReference = mRootReference.child("GeoGroupNamesArray");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +104,8 @@ public class MapMainActivity extends AppCompatActivity
         }
 
         GCMInstanceIDListenerService.StartRegisterToGCM(this);
+
+        firebaseReference = new Firebase(getString(R.string.firebase_connection_string) + "/GeoGroupNamesArray");
     }
 
     @Override
@@ -98,6 +118,29 @@ public class MapMainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         mGoogleApiClient.disconnect();
+    }
+
+    @Override
+    protected void onResume() {
+        CommonUtil.SetIsApplicationRunningInForeground(this, true);
+        NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+        if(broadcastReceiver != null){
+            broadcastReceiver = new GeoGroupBroadcastReceiver(this);
+            IntentFilter filter = new IntentFilter(GeoGroupBroadcastReceiver.BROADCAST_REC_INTENT_FILTER);
+            registerReceiver(broadcastReceiver, filter);
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        CommonUtil.SetIsApplicationRunningInForeground(this, false);
+        if(broadcastReceiver != null){
+            unregisterReceiver(broadcastReceiver);
+            broadcastReceiver = null;
+        }
+        super.onPause();
     }
 
     @Override
@@ -171,7 +214,7 @@ public class MapMainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_add_geo_group:
-
+                firebaseReference.setValue("ok");
                 break;
         }
     }
@@ -312,4 +355,10 @@ public class MapMainActivity extends AppCompatActivity
             }
         }.execute(null, null, null);
     }
+
+    @Override
+    public void onBroadcastReceived(Intent intent) {
+
+    }
+
 }
