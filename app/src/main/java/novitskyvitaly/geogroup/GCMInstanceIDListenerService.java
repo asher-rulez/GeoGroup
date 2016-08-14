@@ -14,6 +14,8 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
+import Util.CommonUtil;
+
 public class GCMInstanceIDListenerService extends IntentService {
 
     private static final String MY_TAG = "geog_IdService";
@@ -47,10 +49,7 @@ public class GCMInstanceIDListenerService extends IntentService {
         String token = "";
         try {
             token = instanceID.getToken(getString(R.string.sender_id), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
-            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.sp_gcm_token), MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.sp_gcm_token_key), token);
-            editor.commit();
+            CommonUtil.SaveGCMTokenToSharedPreferences(this, token);
 
             GcmPubSub pubSub = GcmPubSub.getInstance(this);
             pubSub.subscribe(token, "/topics/topic1", null);

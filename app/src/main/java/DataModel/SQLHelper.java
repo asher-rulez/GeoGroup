@@ -20,10 +20,12 @@ public class SQLHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         LocationReport.onCreate(sqLiteDatabase);
+        MyGeoGroup.onCreate(sqLiteDatabase);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         LocationReport.onUpgrade(sqLiteDatabase);
+        MyGeoGroup.onUpgrade(sqLiteDatabase);
     }
 }

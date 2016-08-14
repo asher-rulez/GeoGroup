@@ -132,7 +132,7 @@ public class LocationReport {
 
     public ContentValues GetContentValuesRow() {
         ContentValues cv = new ContentValues();
-        cv.put(LOCATION_REPORT_ID_KEY, get_id());
+        //cv.put(LOCATION_REPORT_ID_KEY, get_id());
         cv.put(LOCATION_REPORT_USER_ID_KEY, get_user_id());
         cv.put(LOCATION_REPORT_USER_NAME_KEY, get_user_name());
         cv.put(LOCATION_REPORT_GROUP_NAME_KEY, get_groupName());
@@ -158,6 +158,7 @@ public class LocationReport {
                 lr.set_date(cursor.getLong(cursor.getColumnIndex(LOCATION_REPORT_DATE_KEY)));
                 result.add(lr);
             } while (cursor.moveToNext());
+            cursor.close();
         }
         return result;
     }

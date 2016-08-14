@@ -9,4 +9,21 @@
     <string name="is_app_running_in_foreground_token">is_running_token</string>
     <string name="is_app_running_in_foreground_key">is_running_key</string>
 
+    <!-- Location refresh frequency -->
+
+    <string name="location_refresh_frequency_token">location_refresh_token</string>
+    <string name="location_refresh_frequency_key">location_refresh_key</string>
+
+    <!-- Last location saved -->
+
+    <string name="last_location_token">last_location_token</string>
+    <string name="last_location_latitude">last_latitude_key</string>
+    <string name="last_location_longitude">last_longitude_key</string>
+    <string name="last_location_datetime">last_location_date_key</string>
+
+    <!-- My nickname -->
+
+    <string name="nickname_token">nickname_token</string>
+    <string name="nickname_key">nickname_key</string>
+
 </resources>

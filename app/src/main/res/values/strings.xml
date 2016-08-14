@@ -6,4 +6,15 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps_activity_tmp">Map</string>
+
+    <string name="loading_checking_group_names_array">Loading...</string>
+
+    <string name="regex_group_name">^[a-zA-Z0-9]{3,}</string>
+    <string name="group_name_validation_min_lenght">Name should contain at least 3 symbols</string>
+    <string name="group_name_validation_already_exists">Such group name already exists, select other</string>
+    <string name="group_name_validation_symbols">Only letters and digits allowed</string>
+
+    <string name="new_group_dialog_title">Enter new group name:</string>
+    <string name="new_group_dialog_create_button">Create</string>
+    <string name="address_dialog_btn_cancel">Cancel</string>
 </resources>
