@@ -43,6 +43,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -554,4 +555,24 @@ public class MapMainActivity extends AppCompatActivity
         VolleySingleton.getmInstance(this).addToRequestQueue(request);
     }
 
+    private final int ACTION_CREATE_GROUP = 1;
+    private final int ACTION_JOIN_GROUP = 2;
+
+    private void CheckAuthOrNicknameForAction(int action){
+        AuthData authData = firebaseReference.getAuth();
+        if(authData != null){
+            //todo: run action
+        } else {
+            String nickname = CommonUtil.GetMyNickname(this);
+            if(nickname.compareTo("") == 0){
+                //todo: login or choose nickname
+            } else {
+                //todo: run action
+            }
+        }
+    }
+
+
 }
+// todo: listen to internet state
+// todo: check google play services

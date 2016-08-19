@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="firebase_connection_string">https://geogroup-5241a.firebaseio.com</string>
+    <string name="firebase_fieldname_groups">groups</string>
+    <string name="firebase_fieldname_users">users</string>
+    <string name="firebase_fieldname_reports">reports</string>
+    <string name="firebase_fieldname_status_updates">statusUpdates</string>
+    <string name="firebase_fieldname_common_events">commonEvents</string>
 </resources>

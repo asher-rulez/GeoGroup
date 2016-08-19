@@ -26,4 +26,9 @@
     <string name="nickname_token">nickname_token</string>
     <string name="nickname_key">nickname_key</string>
 
+    <!-- Social account name -->
+
+    <string name="social_name_token">nickname_token</string>
+    <string name="social_name_key">nickname_key</string>
+
 </resources>

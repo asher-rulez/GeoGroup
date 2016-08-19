@@ -52,7 +52,7 @@ public class GCMInstanceIDListenerService extends IntentService {
             CommonUtil.SaveGCMTokenToSharedPreferences(this, token);
 
             GcmPubSub pubSub = GcmPubSub.getInstance(this);
-            pubSub.subscribe(token, "/topics/topic1", null);
+            pubSub.subscribe(token, "/topics/commonTopic", null);
 
             Log.i(MY_TAG, "got token: " + token);
         } catch (IOException e) {

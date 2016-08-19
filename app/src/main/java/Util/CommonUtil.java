@@ -10,11 +10,15 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.provider.Settings;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 import android.widget.EditText;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Date;
+import java.util.Map;
 
 import novitskyvitaly.geogroup.R;
 
@@ -91,6 +95,18 @@ public class CommonUtil {
         return sp.getString(ctx.getString(R.string.nickname_key), "");
     }
 
+    public static void SaveSocialNameInSharedPreferences(Context ctx, String nickname){
+        SharedPreferences sp = ctx.getSharedPreferences(ctx.getString(R.string.social_name_token), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(ctx.getString(R.string.social_name_key), nickname);
+        editor.commit();
+    }
+
+    public static String GetMySocialName(Context ctx){
+        SharedPreferences sp = ctx.getSharedPreferences(ctx.getString(R.string.social_name_token), Context.MODE_PRIVATE);
+        return sp.getString(ctx.getString(R.string.social_name_key), "");
+    }
+
     public static ProgressDialog ShowProgressDialog(Context context, String message) {
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
@@ -101,21 +117,23 @@ public class CommonUtil {
     }
 
     public static void SetEditTextIsValid(Context context, EditText field, boolean isValid) {
-        field.getBackground()
-                .setColorFilter(isValid ? context.getResources().getColor(R.color.validation_green_text_color) :
-                        context.getResources().getColor(R.color.validation_red_text_color), PorterDuff.Mode.SRC_ATOP);
+        if(isValid)
+            field.getBackground()
+                    .setColorFilter(ContextCompat.getColor(context, R.color.validation_green_text_color), PorterDuff.Mode.SRC_ATOP);
+        else field.getBackground()
+                .setColorFilter(ContextCompat.getColor(context, R.color.validation_red_text_color), PorterDuff.Mode.SRC_ATOP);
+
         Bitmap validationBitmap = CommonUtil.decodeScaledBitmapFromDrawableResource(context.getResources(),
                 isValid ? R.drawable.validation_ok : R.drawable.validation_wrong,
                 context.getResources().getDimensionPixelSize(R.dimen.edittext_validation_img_size),
                 context.getResources().getDimensionPixelSize(R.dimen.edittext_validation_img_size));
-        Drawable validationDrawable = new BitmapDrawable(validationBitmap);
+        Drawable validationDrawable = new BitmapDrawable(context.getResources(), validationBitmap);
         field.setCompoundDrawablesWithIntrinsicBounds(validationDrawable, null, null, null);
         field.setCompoundDrawablePadding(10);
     }
 
     public static void RemoveValidationFromEditText(Context context, EditText field) {
-        field.getBackground().setColorFilter(context.getResources()
-                .getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        field.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         field.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
     }
 
@@ -153,5 +171,4 @@ public class CommonUtil {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.sp_gcm_token), Context.MODE_PRIVATE);
         return sharedPreferences.getString(ctx.getString(R.string.sp_gcm_token_key), "");
     }
-
 }

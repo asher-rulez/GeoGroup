@@ -1,20 +1,35 @@
 {
   "project_info": {
-    "project_number": "216775535128",
-    "project_id": "geogroup-1470424183137"
+    "project_number": "23986719732",
+    "firebase_url": "https://geogroup-5241a.firebaseio.com",
+    "project_id": "geogroup-5241a",
+    "storage_bucket": "geogroup-5241a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:216775535128:android:b8ace1a306a24bdd",
+        "mobilesdk_app_id": "1:23986719732:android:b8ace1a306a24bdd",
         "android_client_info": {
           "package_name": "novitskyvitaly.geogroup"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "23986719732-o2959ssb97o7gv8ltshllmhjruscmr67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "novitskyvitaly.geogroup",
+            "certificate_hash": "ACD363AAE0AEBC924A7A6E1AE45BF5DD53E26153"
+          }
+        },
+        {
+          "client_id": "23986719732-dh9tv15inof193ut5tuat6gi3botvhdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDnRdzIR3v9qqIy8QC-5i2r4bQ8S8p-x5E"
+          "current_key": "AIzaSyDv0UMPJpcEO6sx0qUY0Tws71WTGk5locY"
         }
       ],
       "services": {
@@ -22,11 +37,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23986719732-dh9tv15inof193ut5tuat6gi3botvhdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
